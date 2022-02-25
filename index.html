@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <title>BOOKR Embed player demo integration</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:800" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:600" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:700" rel="stylesheet" type="text/css">
+    <style>
+body {
+    font-family: Raleway, sans-serif;
+}
+#result span {
+    display: block;
+}
+.center {
+    text-align: center;
+    margin: auto;
+}
+.player {
+    border: none;
+    -webkit-box-shadow: 5px 5px 15px 5px #cbcbcb;
+    box-shadow: 5px 5px 15px 5px #cbcbcb;
+    max-width: 768px;
+    width: 100%;
+    height: 450px;
+}
+.m-40 {
+    margin: 40px;
+}
+.mt-40 {
+    margin-top: 40px;
+}
+</style>
+    <script>
+        window.onmessage = function(e) { 
+			if (e.data) { 
+				data = jQuery.parseJSON( e.data );
+				$( "#raw" ).html(e.data);
+                alert(e.data);
+			} };
+    </script>
+    <link rel="icon" href="https://bookrclass.com/wp-content/uploads/2021/05/cropped-bookrclass_icon_2021_new-32x32.png" sizes="32x32">
+    </head>
+
+    <body data-new-gr-c-s-check-loaded="14.1050.0" data-gr-ext-installed="">
+<div class="row m-40">
+      <div class="col-sm-12 center"> <img alt="BOOKR Player" src="https://bookrlab.com/bookrclass2021/wp-content/uploads/2021/05/BOOKR-Class-logo@3x.png" width="200px"> </div>
+    </div>
+<div class="row m-40">
+      <div class="col-sm-12 center">
+    <h1>BOOKR Embed player integration demo</h1>
+    <p class="center">Example code to embed BOOKR player and capture the reading &amp; excercise statistics with JS.</p>
+  </div>
+    </div>
+<div class="row mt-40">
+      <div class="col-sm-3 center"></div>
+      <div class="col-sm-6"> Use the following embed code to display BOOKR books in your website:
+    <pre><code>&lt;iframe src="https://d35kui49fsydak.cloudfront.net/?book=<strong style="color: crimson">517</strong>" title="book" &gt;&lt;/iframe&gt;</code></pre>
+    Replace the <strong style="color: crimson">book parameter</strong> with the ID of the book you would like to embed. </div>
+      <div class="col-sm-3 center"></div>
+    </div>
+<div class="row mt-40">
+      <div class="col-sm-2 center"> </div>
+      <div class="col-sm-8 center">
+    <iframe class="player" src="https://kiskovi97.github.io/BookrWebappTest/?book=429" title="book"></iframe>
+  </div>
+      <div class="col-sm-4"> </div>
+    </div>
+<div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6">
+    <h3>RAW statistic data</h3>
+    <p>Capture the RAW statistic data with the following JS script. This example prints the captured RAW statistic data to the console.</p>
+    <div class="row">
+          <div class="col-sm-8">
+        <p>CODE</p>
+        <pre><code>
+&lt;script&gt;
+window.onmessage = function(e) { 
+	console.log(e.data);
+	//YOUR CODE HERE
+}
+&lt;/script&gt;
+		 </code></pre>
+      </div>
+          <div class="col-sm-4">
+        <p>RESULT</p>
+        <pre><code id="raw"></code></pre>
+      </div>
+        </div>
+    <p>This code captures the raw statistic data on book close and page flip on games.</p>
+    <br>
+    <h4>Response format (reading stat):</h4>
+    <pre><code>{
+	"bookId":"517",
+	"startedAt":"2022-02-15T08:08:29.9390000+01:00",
+	"duration":4.06489896774292,
+	"pagesVisited":[0,1,2],
+	"lastPageVisited":2,
+	"userId":""
+}</code></pre>
+    <ul>
+          <li>bookId: the ID of the current book</li>
+          <li>startedAt: The timestamp when the read session is started in datetime format</li>
+          <li>duration: The time the user spent reading the book in the current session, in seconds</li>
+          <li>pagesVisited: The list of pages the user visited in the current session</li>
+          <li>lastPageVisited: The last page the user visited in the current session.</li>
+        </ul>
+    <br>
+    <h4>Response format (game stat):</h4>
+    <pre><code>{
+	"mUserId":"1",
+	"mBookId":"follo2100370",
+	"mGameTypeId":"draganddrop",
+	"mPageNumber":9,
+	"mPageGuid":"90545d16-0848-4a19-864d-037ba0f51fb1",
+	"mStatus":false,
+	"mNumberOfElements":6,
+	"mNumberOfCorrectAttempts":0,
+	"mNumberOfWrongAttempts":0
+	}</code></pre>
+    <ul>
+          <li>mGameTypeId: The type of the game</li>
+          <li>mPageNumber: The page number where the game is located in the book</li>
+          <li>mStatus: true if the user completed the game, else false</li>
+          <li>mNumberOfElements: Number of all elements the game consist of. For example the number of questions.</li>
+          <li>mNumberOfCorrectAttempts: The number of correct answers.</li>
+          <li>mNumberOfWrongAttempts: The number of incorrect answers.</li>
+        </ul>
+    <p></p>
+  </div>
+      <div class="col-sm-3"></div>
+    </div>
+<div class="row mt-40">
+	 <div class="col-sm-3">
+		 </div>
+      <div class="col-sm-6">
+    <h3>CloudBot library catalog</h3>
+    <p>Download the catalog with all metadata from <a href="https://docs.google.com/spreadsheets/d/1Spof_OIfygI6FiTrv9KxIDAOOdQ5O6hjgoTL0-jCr9w/edit?usp=sharing">here</a>.</p>
+  </div>
+	<div class="col-sm-3">
+		 </div>
+    </div>
+		
+		
+		<div class="row mt-40">
+	 <div class="col-sm-3">
+		 </div>
+      <div class="col-sm-6">
+  </div>
+	<div class="col-sm-3">
+		 </div>
+    </div>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
