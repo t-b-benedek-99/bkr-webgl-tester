@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.2/bootbox.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Raleway:800" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:400" rel="stylesheet" type="text/css">
@@ -42,7 +43,7 @@ body {
 			if (e.data) { 
 				data = jQuery.parseJSON( e.data );
 				$( "#raw" ).html(e.data);
-                alert(e.data);
+                bootbox.alert(e.data);
 			} };
     </script>
     <link rel="icon" href="https://bookrclass.com/wp-content/uploads/2021/05/cropped-bookrclass_icon_2021_new-32x32.png" sizes="32x32">
